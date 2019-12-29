@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="script.js"/>
+        <h:outputScript library="js" name="myjquery1.js"/>
+
+    </h:head>
+    <h:body>
+        <ui:decorate template="template.xhtml">
+            <ui:define name="centerContent">         
+                <h:form id="editform"   class="form-inline">
+                    <div  style="width: 15%;margin-left: 150px;margin-top: 100px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li id="li1" class="dwe"><a href="#home">查看所有用户</a></li>
+                            <li id="li2" class="dwe"><a href="#aa">查看支教用户</a></li>
+                            <li id="li3" class="dwe"><a href="#bb">查看需求者用户</a></li>
+                            <li id="li4" class="dwe"><a href="#dd">支教审核</a></li>
+                            <li id="li5" class="dwe"><a href="#ee">需求者审核</a></li>
+                            <li id="li6" class="dwe"><a href="#ff">支教贴子审核</a></li>
+                            <li id="li7" class="dwe"><a href="#gg">需求贴子审核</a></li>
+                            <li id="li8" class="dwe"><a href="#hh"><span class="badge pull-right">#{receiveChatBean1.num}</span>收件箱</a></li>
+                        </ul>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv" class="form-inline">         
+                    <div id="home"  class="container ddd1"  style="position: relative; width: 60%;margin-left: 460px;margin-top: -340px;margin-bottom: 200px;">   
+                        <div class="col-lg-6" style="width: 60%;margin-left: 155px;margin-top: -50px; position: absolute;">
+                            <div class="input-group">
+                                <h:inputText id="input1" class="form-control" pt:placeholder="输入用户账号" pt:autofocus="true" value="#{editBean.userResult}" />
+                                <span class="input-group-btn">
+                                    <li style="margin-left: -3px"><h:commandButton class="btn btn-default" value="搜索" action="#{editBean.likeQuery()}" /></li>
+                                </span>
+                            </div>
+                            <h:selectOneMenu value="#{editBean.judegeResult}" class="form-control">
+                                <f:selectItem itemLabel="账号" itemValue="id"/>
+                                <f:selectItem itemLabel="姓名" itemValue="name"/>
+                                <f:selectItem itemLabel="性别" itemValue="gender"/>
+                                <f:selectItem itemLabel="年龄" itemValue="age"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div>
+                            <c:forEach items="#{editBean.listuser}" var="u">
+                                <div class="liu2">
+                                    账号： #{u[0]}<br/>
+                                    昵称： #{u[5]}<br/>
+                                    电话： #{u[8]}<br/>
+                                    邮箱： #{u[3]}<br/>
+                                    真实姓名： #{u[7]}<br/>
+                                    性别： #{u[4]}<br/>
+                                    城市： #{u[2]}<br/>
+                                    职业： #{u[6]}<br/>
+                                    身份： #{editBean.judgeStatue(u)}<br/>
+                                    出生年月： #{u[1]}
+
+                                    <div style="margin-left: 160px;">
+                                        <h:commandLink value="私聊" action="#{editBean.chat(u[0])}" class="text-success"/>
+                                        <f:ajax  render="editformdiv">
+                                            <h:commandLink value="删除" action="#{editBean.deleteUser(u)}" style="margin-left: 10px;"/>
+                                        </f:ajax>
+
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <div id="cc" class="container ddd2"  style="position: relative;  width: 60%;margin-left: 420px;margin-top: -350px;margin-bottom: 300px;">
+                        <div class="col-lg-6" style=" position: absolute;width: 60%;margin-left: 155px;margin-top: 10px;">
+                            <div class="input-group">
+                                <h:inputText id="input2" class="form-control" pt:placeholder="输入用户账号" pt:autofocus="true" value="#{editBean.userResult}" />
+                                <span class="input-group-btn">
+                                    <li style="margin-left: -3px"><h:commandButton class="btn btn-default" value="搜索" action="#{editBean.likeQuery()}" /></li>
+                                </span>
+                            </div>
+                            <h:selectOneMenu value="#{editBean.judegeResult}" class="form-control">
+                                <f:selectItem itemLabel="账号" itemValue="id"/>
+                                <f:selectItem itemLabel="姓名" itemValue="name"/>
+                                <f:selectItem itemLabel="性别" itemValue="gender"/>
+                                <f:selectItem itemLabel="年龄" itemValue="age"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <c:forEach items="#{editBean.listuser3}" var="u">
+                            <div class="liu2">
+                                账号： #{u[0]}<br/>
+                                昵称： #{u[5]}<br/>
+                                电话： #{u[8]}<br/>
+                                邮箱： #{u[3]}<br/>
+                                真实姓名： #{u[7]}<br/>
+                                性别： #{u[4]}<br/>
+                                城市： #{u[2]}<br/>
+                                职业： #{u[6]}<br/>
+                                身份： #{editBean.judgeStatue(u)}<br/>
+                                出生年月： #{u[1]}
+                                 <div style="margin-left: 160px;">
+                                        <h:commandLink value="私聊" action="#{editBean.chat(u[0])}" class="text-success"/>
+                                        <f:ajax  render="editformdiv">
+                                            <h:commandLink value="删除" action="#{editBean.deleteUser(u)}" style="margin-left: 10px;"/>
+                                        </f:ajax>
+
+                                    </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv1" class="form-inline">
+                    <div id="aa" class="container ddd" style="position: relative; width: 60%;margin-left: 460px;margin-top: -340px;margin-bottom: 200px;">
+                        <div class="col-lg-6" style="width: 60%;margin-left: 155px;margin-top: -50px; position: absolute;">
+                            <div class="input-group">
+                                <h:inputText id="input3" class="form-control" pt:placeholder="输入用户账号" pt:autofocus="true" value="#{editBean.userResult}" />
+                                <span class="input-group-btn">
+                                    <li style="margin-left: -3px"><h:commandButton class="btn btn-default" value="搜索" action="#{editBean.likeQuery()}" /></li>
+                                </span>
+                            </div>
+                            <h:selectOneMenu value="#{editBean.judegeResult}" class="form-control">
+                                <f:selectItem itemLabel="账号" itemValue="id"/>
+                                <f:selectItem itemLabel="姓名" itemValue="name"/>
+                                <f:selectItem itemLabel="性别" itemValue="gender"/>
+                                <f:selectItem itemLabel="年龄" itemValue="age"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <c:forEach items="#{editBean.listuser1}" var="u">
+                            <div class="liu2">
+                                账号： #{u[0]}<br/>
+                                昵称： #{u[5]}<br/>
+                                电话： #{u[8]}<br/>
+                                邮箱： #{u[3]}<br/>
+                                真实姓名： #{u[7]}<br/>
+                                性别： #{u[4]}<br/>
+                                城市： #{u[2]}<br/>
+                                职业： #{u[6]}<br/>
+                                身份： #{editBean.judgeStatue(u)}<br/>
+                                出生年月： #{u[1]}
+                              <div style="margin-left: 160px;">
+                                        <h:commandLink value="私聊" action="#{editBean.chat(u[0])}" class="text-success"/>
+                                        <f:ajax  render="editformdiv">
+                                            <h:commandLink value="删除" action="#{editBean.deleteUser(u)}" style="margin-left: 10px;"/>
+                                        </f:ajax>
+
+                                    </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv2" class="form-inline">
+                    <div id="bb" class="container ddd" style="position: relative; width: 60%;margin-left: 460px;margin-top: -340px;margin-bottom: 200px;">
+                        <div class="col-lg-6" style="width: 60%;margin-left: 155px;margin-top: -50px; position: absolute;">
+                            <div class="input-group">
+                                <h:inputText id="input4" class="form-control" pt:placeholder="输入用户账号" pt:autofocus="true" value="#{editBean.userResult}" />
+                                <span class="input-group-btn">
+                                    <li style="margin-left: -3px"><h:commandButton class="btn btn-default" value="搜索" action="#{editBean.likeQuery()}" /></li>
+                                </span>
+                            </div>
+                            <h:selectOneMenu value="#{editBean.judegeResult}" class="form-control">
+                                <f:selectItem itemLabel="账号" itemValue="id"/>
+                                <f:selectItem itemLabel="姓名" itemValue="name"/>
+                                <f:selectItem itemLabel="性别" itemValue="gender"/>
+                                <f:selectItem itemLabel="年龄" itemValue="age"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <c:forEach items="#{editBean.listuser2}" var="u">
+                            <div class="liu2">
+                                账号： #{u[0]}<br/>
+                                昵称： #{u[5]}<br/>
+                                电话： #{u[8]}<br/>
+                                邮箱： #{u[3]}<br/>
+                                真实姓名： #{u[7]}<br/>
+                                性别： #{u[4]}<br/>
+                                城市： #{u[2]}<br/>
+                                职业： #{u[6]}<br/>
+                                身份： #{editBean.judgeStatue(u)}<br/>
+                                出生年月： #{u[1]}
+                                <div style="margin-left: 160px;">
+                                        <h:commandLink value="私聊" action="#{editBean.chat(u[0])}" class="text-success"/>
+                                        <f:ajax  render="editformdiv">
+                                            <h:commandLink value="删除" action="#{editBean.deleteUser(u)}" style="margin-left: 10px;"/>
+                                        </f:ajax>
+
+                                    </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv3" class="form-inline">
+                    <div id="dd" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -180px;margin-bottom: 280px;">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <table class="table">
+                                <tr>
+                                    <th>用户账号</th>
+                                    <th>用户姓名</th>
+                                    <th>支教结束时间</th>
+                                    <th>个人简介</th>
+                                    <th>查看详情</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{editBean1.list}" var="u">
+                                    <tr>
+                                        <td>#{u[0]}</td>
+                                        <td>#{u[8]}</td>
+                                        <td>#{u[14]}</td>
+                                        <td>#{editBean1.perIntroduce(u)}</td>
+                                        <td><h:commandLink value="查看" action="#{editBean1.details(u)}"/></td>
+                                        <td>
+                                            <f:ajax render="editformdiv3">
+                                                <h:commandLink value="同意" action="#{editBean1.handleOkspe(u[0])}"/>  
+                                                &nbsp;&nbsp;
+                                                <h:commandLink value="拒绝" action="#{editBean1.handleNo(u[0])}"/>   
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+
+                <h:form id="editformdiv4" class="form-inline">
+                    <div id="ee" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -180px;margin-bottom: 280px;">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <table class="table">
+                                <tr>
+                                    <th>用户账号</th>
+                                    <th>用户姓名</th>
+                                    <th>个人简介</th>
+                                    <th>查看详情</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{editBean2.list}" var="u">
+                                    <tr>
+                                        <td>#{u[0]}</td>
+                                        <td>#{u[8]}</td>                        
+                                        <td>#{editBean2.perIntroduce(u)}</td>
+                                        <td><h:commandLink value="查看" action="#{editBean2.details(u)}"/></td>
+                                        <td>
+                                            <f:ajax render="editformdiv4">
+                                                <h:commandLink value="同意" action="#{editBean2.handleOkneed(u[0])}"/>  
+                                                &nbsp;&nbsp;
+                                                <h:commandLink value="拒绝" action="#{editBean2.handleNo(u[0])}"/>   
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv5" class="form-inline">
+                    <div id="ff" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -220px;margin-bottom: 300px;">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <h1>支教帖历史记录</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>贴子标题</th>
+                                    <th>发帖时间</th>
+                                    <th>需要人数</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{adminCheckPostBean.listspe}" var="u">
+                                    <tr>
+                                        <td>#{u.speTitle}</td>
+                                        <td>#{u.id.speTime}</td>                        
+                                        <td>#{u.speQuantity}</td>
+                                        <td>#{u.demandStatus}</td>
+                                        <td><h:commandLink value="查看" action="#{adminCheckPostBean.spedetail(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv5">
+                                                <h:commandLink value="同意" action="#{adminCheckPostBean.checkPostOk(u)}"/>&nbsp;&nbsp;
+                                                <h:commandLink value="拒绝" action="#{adminCheckPostBean.checkPostNo(u)}"/>
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>                 
+                        </div>
+                    </div>
+                </h:form>
+
+                <h:form id="editformdiv6" class="form-inline">
+                    <div id="gg" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -220px;margin-bottom: 300px;">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <h1>需求贴历史记录</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>贴子标题</th>
+                                    <th>发帖时间</th>
+                                    <th>需要物质</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{adminCheckPostBean.listgoodsdemand}" var="u">
+                                    <tr>
+                                        <td>#{u.demandTitle}</td>
+                                        <td>#{u.id.demandTime}</td>                        
+                                        <td>#{u.demandGoods}</td>
+                                        <td>#{u.demandStatus}</td>
+                                        <td><h:commandLink value="查看" action="#{adminCheckPostBean.spedetail1(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv6"> 
+                                                <h:commandLink value="同意" action="#{adminCheckPostBean.checkPostOk1(u)}"/>&nbsp;&nbsp;
+                                                <h:commandLink value="拒绝" action="#{adminCheckPostBean.checkPostNo1(u)}"/>
+                                            </f:ajax></td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv7" class="form-inline">
+                    <div id="hh" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -220px;margin-bottom: 300px; ">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <h1>收件箱</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>发件人</th>
+                                    <th>发件时间</th>
+                                    <th>内容</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{receiveChatBean1.meslist}" var="u">
+                                    <tr>
+                                        <td>#{u.id.moutId}</td>
+                                        <td>#{u.id.mtime}</td>                        
+                                        <td>#{u.mcontent.substring(0,2)}.......</td>
+
+                                        <td><h:commandLink value="查看" action="#{receiveChatBean1.lookdetailedMessage(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv7">
+                                                <h:commandLink value="删除" action="#{receiveChatBean1.deleteMessage(u)}"/>
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+
+
+
+
+
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>
+

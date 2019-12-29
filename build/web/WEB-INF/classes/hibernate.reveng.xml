@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="SptEducation" match-schema="dbo"/>
+  <table-filter match-name="users"/>
+  <table-filter match-name="message"/>
+  <table-filter match-name="spedu"/>
+  <table-filter match-name="journal"/>
+  <table-filter match-name="demandsignup"/>
+  <table-filter match-name="speapply"/>
+  <table-filter match-name="goodsdemand"/>
+  <table-filter match-name="demandapply"/>
+  <table-filter match-name="userapply"/>
+  <table-filter match-name="useridentity"/>
+  <table-filter match-name="spesignup"/>
+</hibernate-reverse-engineering>

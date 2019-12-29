@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://117.78.3.228:1433;databaseName=SptEducation</property>
+    <property name="hibernate.connection.username">sa</property>
+    <property name="hibernate.connection.password">970625shJ</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <!--要映射一个类，目前这个类还没有写，里面的路劲是乱写-->
+    <mapping class="com.qdu.pojo.Admin"/>
+    <mapping class="com.qdu.pojo.Useridentity"/>
+    <mapping class="com.qdu.pojo.JournalId"/>
+    <mapping class="com.qdu.pojo.SpesignupId"/>
+    <mapping class="com.qdu.pojo.Admin"/>
+    <mapping class="com.qdu.pojo.MessageId"/>
+    <mapping class="com.qdu.pojo.Spedu"/>
+    <mapping class="com.qdu.pojo.Users"/>
+    <mapping class="com.qdu.pojo.Demandsignup"/>
+    <mapping class="com.qdu.pojo.Demandapply"/>
+    <mapping class="com.qdu.pojo.Spesignup"/>
+    <mapping class="com.qdu.pojo.Speapply"/>
+    <mapping class="com.qdu.pojo.Userapply"/>
+    <mapping class="com.qdu.pojo.Goodsdemand"/>
+    <mapping class="com.qdu.pojo.DemandsignupId"/>
+    <mapping class="com.qdu.pojo.Journal"/>
+    <mapping class="com.qdu.pojo.SpeduId"/>
+    <mapping class="com.qdu.pojo.GoodsdemandId"/>
+    <mapping class="com.qdu.pojo.Message"/>
+  </session-factory>
+</hibernate-configuration>

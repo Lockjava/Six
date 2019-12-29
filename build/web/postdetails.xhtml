@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="script.js"/>
+    </h:head>
+    <h:body>
+        <ui:decorate template="template.xhtml">
+            <ui:define name="centerContent">
+                <h:form class="form-inline container">
+                    <div class="liu3" style="width: 80%">
+                        <h3>账号：</h3>#{lookHistoryBean.sp.id.userId} <br/>
+                        <h3>地址：</h3>   #{lookHistoryBean.sp.speAddress} <br/>
+                        <h3>城市：</h3>   #{lookHistoryBean.sp.speCity} <br/>
+                        <h3>内容：</h3>  #{lookHistoryBean.sp.speContent} <br/>
+                        <h3>身份：</h3>  #{lookHistoryBean.sp.demandStatus} <br/>
+                        <h3>支教时间：</h3>  #{lookHistoryBean.sp.id.speTime} <br/>
+                        <h3>学校：</h3>  #{lookHistoryBean.sp.speSchool} <br/>
+                        <h3>需求人：</h3> #{lookHistoryBean.sp.spePerson} <br/>
+                        <h3>接帖人数量：</h3> #{lookHistoryBean.calculateQuantity(lookHistoryBean.sp.id.speTime,lookHistoryBean.sp.id.userId)} 
+                        <br/>
+                        .........<br/>
+                        ..............<br/>
+                        ...............
+                        <br/>
+                        &nbsp;&nbsp;
+                        <a style="margin-left:720px;font-size: x-large" href="lookpostperson.xhtml">查看接贴人</a>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>
+

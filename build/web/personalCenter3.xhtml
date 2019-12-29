@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="script.js"/>
+        <h:outputScript library="js" name="myjquery.js"/>
+        <style>
+            .black{
+                color:black;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <ui:decorate template="template.xhtml">
+            <ui:define name="centerContent">
+                <h:form id="editform"   class="form-inline">
+
+                    <div  style="width: 15%;margin-left: 10px;margin-top: 100px; margin-left: 150px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li id="li1" class="active dwe"><a href="#home">编辑资料</a></li>
+                            <li id="li2" class="dwe"><a href="#aa">申请成为支教</a></li>
+                            <li id="li3" class="dwe"><a href="#bb">发支教需求贴</a></li>
+                            <li id="li4" class="dwe"><a href="#cc">发物质需求贴</a></li>
+                            <li id="li5" class="dwe"><a href="#dd">查看历史</a></li>
+                            <li id="li6" class="dwe"><a href="#ee"><span class="badge pull-right">#{receiveChatBean.num}</span>收件箱</a></li>
+                        </ul>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv1" class="form-inline">
+                    <div id="home" class="container ddd1" style="width: 25%;margin-left: 550px;margin-top: -280px;margin-bottom: 60px; ">
+                        <h:outputLabel value="姓名:" for="qqt" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt" class="form-control"   readonly="true"
+                                     required="true"   value="#{loginBean.user.userRealName}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="性别:" for="qqt1" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt1" class="form-control"  readonly="true"
+                                     required="true" value="#{loginBean.user.userGender}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="身份证号码:" for="qqt5"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt5" class="form-control"  readonly="true"
+                                     required="true"   value="#{loginBean.user.userCard}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="昵称:" for="qqt2" style="margin-left: 42px"/>&nbsp;&nbsp;                       
+                        <h:inputText id="qqt2" class="form-control" pt:placeholder="昵称" requiredMessage="不能为空" 
+                                     required="true"   value="#{loginBean.user.userName}" readonly="#{loginBean.show}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="联系电话:" for="qqt3" style="margin-left: 14px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt3" class="form-control" pt:placeholder="联系电话" requiredMessage="不能为空" 
+                                     required="true"   value="#{loginBean.user.userTel}" readonly="#{loginBean.show}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="邮箱:" for="qqt4" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt4" class="form-control" pt:placeholder="邮箱" requiredMessage="不能为空" 
+                                     required="true"   value="#{loginBean.user.userEmail}" readonly="#{loginBean.show}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="所在城市:" for="qqt6" style="margin-left: 14px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt6" class="form-control" pt:placeholder="所在城市" requiredMessage="不能为空" 
+                                     required="true"  value="#{loginBean.user.userCity}" readonly="#{loginBean.show}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="职业:" for="qqt7" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt7" class="form-control" pt:placeholder="职业" requiredMessage="不能为空" 
+                                     required="true"   value="#{loginBean.user.userOccupation}" readonly="#{loginBean.show}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="出生年月:" for="qqt8" style="margin-left: 14px"/>&nbsp;&nbsp;
+                        <h:inputText id="qqt8" class="form-control" pt:placeholder="出生年月" requiredMessage="不能为空"
+                                     readonly="true"   value="#{loginBean.user.userBirtnday}">
+                        </h:inputText>
+                        <br/><br/> <br/><br/>
+                        <div style="margin-left: 225px;">
+                            <f:ajax render="editformdiv1">
+                                <h:commandButton class="btn btn-primary btn-danger" value="编辑" action="#{loginBean.edit}" rendered="#{loginBean.show}"/>
+                            </f:ajax>
+                            <f:ajax execute="editformdiv1" render="editformdiv1">
+                                <h:commandButton class="btn btn-primary btn-success"  action="#{loginBean.save()}" value="保存" rendered="#{!loginBean.show}"/>
+                            </f:ajax>
+                        </div>
+                    </div>
+                </h:form>
+                <h:form id="editformdiv2" class="form-inline" enctype="multipart/form-data">
+                    <div id="aa" class="container ddd" style="width: 25%;margin-left: 550px;margin-top: -300px;margin-bottom: 60px; ">
+
+                        <br/><br/>
+
+                        <h:outputLabel value="支教最大日期:" for="q1" style="margin-left: -16px;"/>&nbsp;&nbsp;                       
+                        <h:inputText style="width: 196px" id="q1" class="form-control"  requiredMessage="不能为空" pt:type="date"
+                                     required="true" value="#{applyBean.dateString}">
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="普通话:" for="q2" style="margin-left: 27px"/>&nbsp;&nbsp;
+                        <h:selectOneMenu id="q2" value="#{applyBean.speapply.saputonghua}" class="form-control" style="width: 196px;" >
+                            <f:selectItem itemLabel="请选择"/>
+                            <f:selectItem itemLabel="标准" itemValue="标准"/>
+                            <f:selectItem itemLabel="一般" itemValue="一般"/>
+                            <f:selectItem itemLabel="不标准" itemValue="不标准"/>
+                        </h:selectOneMenu>
+                        <br/><br/>
+                        <h:outputLabel value="学历:" for="q4" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:selectOneMenu id="q4" value="#{applyBean.speapply.saeducationBackground}" class="form-control" style="width: 196px;" >
+                            <f:selectItem itemLabel="请选择学历"/>
+                            <f:selectItem  itemLabel="小学" itemValue="小学"/>
+                            <f:selectItem itemLabel="初中" itemValue="初中"/>
+                            <f:selectItem itemLabel="高中" itemValue="高中"/>
+                            <f:selectItem itemLabel="大学" itemValue="大学"/>
+                            <f:selectItem itemLabel="研究生" itemValue="研究生"/>
+                            <f:selectItem itemLabel="博士" itemValue="博士"/>
+                        </h:selectOneMenu>
+
+
+                        <br/><br/>
+                        <h:outputLabel value="亲属支持情况:" for="q5" style="margin-left: -14px"/>&nbsp;&nbsp;
+                        <h:selectOneMenu id="q5" value="#{applyBean.speapply.sasupportLevel}" class="form-control" style="width:196px;">
+                            <f:selectItem itemLabel="请选择亲属支持情况"/>
+                            <f:selectItem itemLabel="支持" itemValue="支持"/>
+                            <f:selectItem itemLabel="不支持" itemValue="不支持"/>
+                            <f:selectItem itemLabel="不知情" itemValue="不知情"/>
+                        </h:selectOneMenu>
+                        <br/> <br/>
+                        <h:outputLabel value="上传身份证照片：" for="q6" style="margin-left: -30px"/>&nbsp;&nbsp;
+                        <h:inputFile id="q6" value="#{applyBean.speapply.saidcardPhoto}" style="margin-left: 88px;margin-top: -25px;"/>
+                        <br/> <br/>
+                        <h:outputLabel value="个人简述:" for="q3" style="margin-left: 12px"/>&nbsp;&nbsp;
+                        <br/><br/>
+                        <h:inputTextarea id="q3" class="form-control" pt:placeholder="个人简述(字数不超过100)" requiredMessage="不能为空" 
+                                         required="true" cols="60" rows="10" value="#{applyBean.speapply.sapersonDescribe}" >
+                        </h:inputTextarea>
+                        <br/><br/> <br/><br/>
+                        <div style="margin-left: 150px;">                           
+                            <h:commandButton class="btn btn-primary btn-lg"  action="#{applyBean.submitAplSpe()}" value="提交"/>                          
+                        </div>
+                    </div>
+                </h:form>
+
+                <h:form id="editformdiv3" class="form-inline" enctype="multipart/form-data">
+                    <div id="bb" class="container ddd" style="width: 25%;margin-left: 550px;margin-top: -270px;margin-bottom: 60px; ">
+
+                        <h:outputLabel value="需求贴标题:" for="qa1" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa1" class="form-control"   pt:placeholder="需求贴标题"
+                                     required="true" value="#{demandPostBean.spe.speTitle}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求学校:" for="qa2" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa2" class="form-control"   pt:placeholder="需求学校"
+                                     required="true" value="#{demandPostBean.spe.speSchool}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求城市:" for="qa3" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa3" class="form-control"   pt:placeholder="需求城市"
+                                     required="true"  value="#{demandPostBean.spe.speCity}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求地址:" for="qa4" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa4" class="form-control"   pt:placeholder="需求地址"
+                                     required="true"  value="#{demandPostBean.spe.speAddress}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求人:" for="qa5" style="margin-left: 69px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa5" class="form-control"   pt:placeholder="需求人姓名"
+                                     required="true"  value="#{demandPostBean.spe.spePerson}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="联系方式:" for="qa6" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa6" class="form-control"   pt:placeholder="手机或电话"
+                                     required="true" value="#{demandPostBean.spe.speTel}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求人数:" for="qa7" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa7" class="form-control"   pt:placeholder="需求人数"
+                                     required="true" value="#{demandPostBean.spe.speQuantity}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="开始时间:" for="qa8" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qt8" class="form-control dateDialog"  pt:type="date"
+                                     value="#{demandPostBean.spe.speStartTime}"> 
+                            <f:convertDateTime type="date"/>
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="结束时间:" for="qa9" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qt9" class="form-control dateDialog" pt:type="date"
+                                     value="#{demandPostBean.spe.speEndTime}"> 
+                            <f:convertDateTime type="date"/>
+                        </h:inputText>
+                        <br/><br/>
+
+
+                        <h:outputLabel value="贴子内容:" for="qa3" style="margin-left: 55px"/>&nbsp;&nbsp;
+                        <br/><br/>
+                        <h:inputTextarea id="qa10" class="form-control" pt:placeholder="内容(字数不超过1000)" requiredMessage="不能为空" 
+                                         required="true" cols="60" rows="10" value="#{demandPostBean.spe.speContent}" >
+                        </h:inputTextarea>
+                        <br/> <br/>
+                        <h:outputLabel value="上传照片：" for="qa6" style="margin-left: -30px"/>&nbsp;&nbsp;
+                        <h:inputFile id="qa11"  style="margin-left: 88px;margin-top: -25px;"
+                                     value="#{demandPostBean.spe.spePicture}"/>
+                        <br/> <br/>
+                        <h:outputLabel value="上传视频(可选):" for="qa6" style="margin-left: -30px"/>&nbsp;&nbsp;
+                        <h:inputFile id="qa12" style="margin-left: 88px;margin-top: -25px;"
+                                     value="#{demandPostBean.spe.speVideo}"/>
+                        <br/><br/> <br/><br/>
+                        <div style="margin-left: 150px;">   
+                            <f:ajax execute="editformdiv3">
+                                <h:commandButton class="btn btn-primary btn-lg"  action="#{demandPostBean.saveDemandPost()}" value="发布"/>   
+                            </f:ajax>
+                        </div>
+                    </div>
+                </h:form>
+
+
+                <h:form id="editformdiv4" class="form-inline" enctype="multipart/form-data">
+                    <div id="cc" class="container ddd" style="width: 25%;margin-left: 550px;margin-top: -270px;margin-bottom: 60px; ">
+
+                        <h:outputLabel value="需求贴标题:" for="qa11" style="margin-left: 42px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa11" class="form-control"   pt:placeholder="需求贴标题"
+                                     required="true" value="#{demandPost1Bean.goodsdemand.demandTitle}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求物质:" for="qa22" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa22" class="form-control"   pt:placeholder="需求物质"
+                                     required="true" value="#{demandPost1Bean.goodsdemand.demandSide}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求城市:" for="qa33" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa33" class="form-control"   pt:placeholder="需求城市"
+                                     required="true"  value="#{demandPost1Bean.goodsdemand.demandCity}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求地址:" for="qa44" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa44" class="form-control"   pt:placeholder="需求地址"
+                                     required="true"  value="#{demandPost1Bean.goodsdemand.demandAddress}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求人:" for="qa55" style="margin-left: 70px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa55" class="form-control"   pt:placeholder="需求人姓名"
+                                     required="true"  value="#{demandPost1Bean.goodsdemand.demandPerson}" >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="联系方式:" for="qa66" style="margin-left: 56px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa66" class="form-control"   pt:placeholder="手机或电话"
+                                     required="true" value="#{demandPost1Bean.goodsdemand.demandTel}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求物质数量:" for="qa77" style="margin-left: 28px"/>&nbsp;&nbsp;
+                        <h:inputText id="qa77" class="form-control"   pt:placeholder="需求物质数量"
+                                     required="true" value="#{demandPost1Bean.goodsdemand.demandGoods}"  >
+                        </h:inputText>
+                        <br/><br/>
+                        <h:outputLabel value="需求有效期:" for="qa88" style="margin-left: 41px"/>&nbsp;&nbsp;
+                        <h:inputText id="qt88" class="form-control dateDialog"  pt:type="date"
+                                     value="#{demandPost1Bean.goodsdemand.demandValidity}"> 
+                            <f:convertDateTime type="date"/>
+                        </h:inputText>
+                        <br/><br/>                  
+                        <h:outputLabel value="贴子内容:"  style="margin-left: 54px"/>&nbsp;&nbsp;
+                        <br/><br/>
+                        <h:inputTextarea id="qa100" class="form-control" pt:placeholder="内容(字数不超过1000)" requiredMessage="不能为空" 
+                                         required="true" cols="60" rows="10" value="#{demandPost1Bean.goodsdemand.demandContent}" >
+                        </h:inputTextarea>
+                        <br/> <br/>
+                        <h:outputLabel value="上传照片：" style="margin-left: -30px"/>&nbsp;&nbsp;
+                        <h:inputFile id="qa111"  style="margin-left: 88px;margin-top: -25px;"
+                                     value="#{demandPost1Bean.goodsdemand.demandPicture}"/>
+                        <br/> <br/>
+                        <h:outputLabel value="上传视频(可选):"  style="margin-left: -30px"/>&nbsp;&nbsp;
+                        <h:inputFile id="qa122" style="margin-left: 88px;margin-top: -25px;"
+                                     value="#{demandPost1Bean.goodsdemand.demandVideo}"/>
+                        <br/><br/> <br/><br/>
+                        <div style="margin-left: 150px;"> 
+                            <f:ajax execute="editformdiv4">
+                                <h:commandButton class="btn btn-primary btn-lg"  action="#{demandPost1Bean.saveDemandPost1()}" value="发布"/>
+                            </f:ajax>
+                        </div>
+                    </div>
+                </h:form>
+
+
+                <h:form id="editformdiv5" class="form-inline">
+                    <div id="dd" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -150px;margin-bottom: 500px;">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <h1>支教帖历史记录</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>贴子标题</th>
+                                    <th>发帖时间</th>
+                                    <th>需要人数</th>
+                                    <th>状态</th>
+                                    <th>接帖人数</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{lookHistoryBean.listspe}" var="u">
+                                    <tr>
+                                        <td>#{u.speTitle}</td>
+                                        <td>#{u.id.speTime}</td>                        
+                                        <td>#{u.speQuantity}</td>
+                                        <td>#{u.demandStatus}</td>
+                                        <td>#{lookHistoryBean.calculateQuantity(u.id.speTime,u.id.userId)}</td>
+                                        <td><h:commandLink value="查看" action="#{lookHistoryBean.dtpost(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv5">
+                                                <h:commandLink value="删帖" action="#{lookHistoryBean.deletepost(u)}"/>
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                            <h1>需求贴历史记录</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>贴子标题</th>
+                                    <th>发帖时间</th>
+                                    <th>需要物质</th>
+                                    <th>状态</th>
+                                    <th>接帖人数</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{lookHistoryBean.listgoodsdemand}" var="u">
+                                    <tr>
+                                        <td>#{u.demandTitle}</td>
+                                        <td>#{u.id.demandTime}</td>                        
+                                        <td>#{u.demandGoods}</td>
+                                        <td>#{u.demandStatus}</td>
+                                        <td>#{lookHistoryBean.calculateQuantity1(u.id.demandTime,u.id.userId)}</td>
+                                        <td><h:commandLink value="查看" action="#{lookHistoryBean.dtpost1(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv5"> <h:commandLink value="删帖" action="#{lookHistoryBean.deletepost1(u)}"/>
+                                            </f:ajax></td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+
+                    </div>
+                </h:form>
+
+                      <h:form id="editformdiv6" class="form-inline">
+                    <div id="ee" class="container ddd" style="width: 60%;margin-left: 460px;margin-top: -150px;margin-bottom: 300px; ">
+                        <div style="margin-top: -160px;margin-left: -40px;">
+                            <h1>收件箱</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>发件人</th>
+                                    <th>发件时间</th>
+                                    <th>内容</th>
+                                    <th>操作</th>
+                                </tr>
+                                <c:forEach items="#{receiveChatBean.meslist}" var="u">
+                                    <tr>
+                                        <td>#{u.id.moutId}</td>
+                                        <td>#{u.id.mtime}</td>                        
+                                        <td>#{u.mcontent.substring(0,3)}.......</td>
+
+                                        <td><h:commandLink value="查看" action="#{receiveChatBean.lookdetailedMessage(u)}"/>&nbsp;&nbsp;
+                                            <f:ajax render="editformdiv6">
+                                                <h:commandLink value="删除" action="#{receiveChatBean.deleteMessage(u)}"/>
+                                            </f:ajax>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
+                    </div>
+                </h:form>
+                
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>
+
+
+
