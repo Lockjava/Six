@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="script.js" />
+
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--        <ui:decorate/>装饰的意思，是用来引用模板-->
+        <!--<ui:define/>是用来把东西放在模板的某一个部分-->
+        <ui:decorate template="template.xhtml">
+            <ui:define name="centerContent">
+                <div style="background-color: #f9f9f9">
+                    <h:form class="form-inline">
+                        <div id="myCarousel" class="carousel slide">
+                            <!-- 轮播（Carousel）指标 -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ol>   
+                            <!-- 轮播（Carousel）图片 -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <h:commandLink action="test01" ><h:graphicImage width="100%" url="resources/images/top02.jpg"/></h:commandLink>
+                                </div>
+                                <div class="item">
+                                    <h:commandLink action="test01"><h:graphicImage  width="100%" url="resources/images/top01.jpg"/></h:commandLink>
+                                </div>
+                                <div class="item">
+                                    <h:commandLink action="test01"><h:graphicImage width="100%" url="resources/images/top03.jpg"/></h:commandLink>
+                                </div>
+                            </div>
+                            <!-- 轮播（Carousel）导航 -->
+                            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"/>
+                            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"/>
+                        </div>
+                        <br/>
+                        <div>
+                            
+                            <hr style="width:200px;"/>
+                            <div class="text-center">
+                                <h4>  携手支教计划</h4>
+                            </div>
+                            <hr style="width:200px;"></hr>
+                            <br/>
+
+                            <table width="1100" class="padding1" style="margin-left: 250px;" >
+                                <tr class="liu">
+
+                                    <td>
+                                        <img src="resources/images/m02.jpg"/>
+                                    </td>
+                                    <td width="60" bgcolor="white"></td>
+                                    <td align="left" bgcolor="white">                                
+                                        <p>为缓解中西部地区师资力量匮乏，促进乡村教育发展,
+                                            中国·支教联盟于2006年通过有计划的向社会招募志愿者，
+                                            审核和培训后派遣前往贵州、云南、广西及宁夏等地区进行为期一学期或更长时间的长期支教援助 </p>
+                                        <br/><br/><br/>
+                                        <h:commandButton value="我要支教" class="btn btn-success btn-lg" style="margin-left: 160px" action="suptEdu"/>                                       
+                                    </td>
+                                    <td width="30" bgcolor="white"></td>
+
+                                </tr>
+
+                            </table>
+
+
+
+                            <table width="1100" class="padding1" style="margin-left: 250px; margin-top: 100px;" >
+                                <tr class="liu">
+                                    <td width="30" bgcolor="white"></td>
+                                    <td align="left" bgcolor="white" >  
+                                        <h4 class="text-center"> 2019年春季支教志愿者招募公告</h4>
+                                        <br/>                                   
+                                        <p>真正的教育是发掘自身的天赋与热爱，找到可以为之奋斗一生的事业。这便是教育的真谛，也是人生活的意义所在。</p>
+                                        <br/><br/><br/>
+
+                                        <div>
+                                            <h:commandButton value="查看详情" class="btn btn-default btn-lg" style="margin-left: 50px;" action="readDetailedNeed"/>
+                                            <h:commandButton value="我要支教" class="btn btn-success btn-lg" style="margin-left: 170px; margin-top: -70px" action="suptEdu"/>
+                                        </div>
+                                    </td>
+                                    <td width="60" bgcolor="white" ></td>
+                                    <td>
+                                        <img src="resources/images/m01.jpg" width="700"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table width="1100" class="padding1" style="margin-left: 250px; margin-top: 250px;" ></table>
+                        </div>
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>
+
