@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.2.1.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="script.js"/>
+    </h:head>
+    <h:body>
+        <ui:decorate template="template.xhtml">
+            <ui:define name="centerContent">
+                <h:form class="form-inline container">
+                    <div class="liu3" style="width: 80%">
+                        <h3> 账号： </h3>   #{editBean2.s[0]} <br/>
+                        <h3> 出生日期： </h3> #{editBean2.s[1]} <br/>
+                        <h3>  身份证号码： </h3> #{editBean2.s[2]} <br/>
+                        <h3>  居住城市: </h3> #{editBean2.s[3]} <br/>
+                        <h3>  邮箱： </h3>#{editBean2.s[4]} <br/>
+                        <h3> 性别： </h3> #{editBean2.s[5]} <br/>
+                        <h3> 昵称： </h3>#{editBean2.s[6]} <br/>
+                        <h3>A:</h3>   #{editBean2.s[7]} <br/>
+                        <h3>B:</h3>      #{editBean2.s[8]} <br/>
+                        <h3>C:</h3>      #{editBean2.s[9]} <br/>
+                        <h3>D:</h3>      #{editBean2.s[10]} <br/>
+                        <h3>内容:</h3>     #{editBean2.s[11]} <br/>
+                        <h3>F:</h3>    #{editBean2.s[12]} <br/> 
+                        <h3>G:</h3>   #{editBean2.s[13]} <br/>
+                 
+                        <div style="margin-left:800px">
+                            <h:commandLink style="font-size: x-large" value="返回" action="#{loginBean.isWho()}"/>              
+                        </div>
+                    </div>
+
+
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>
+
